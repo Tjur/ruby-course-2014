@@ -3,8 +3,7 @@ require './article.rb'
 class MockArticle < Article
 	def initialize
 		super(generate_title, generate_content, generate_author)
-		@likes = random_number
-		@dislikes = random_number
+		@likes, @dislikes = random_number, random_number
 	end
 
 	WORD_LIST = %w{ 
@@ -30,13 +29,13 @@ class MockArticle < Article
 	end
 
 	def generate_author
-		WORD_LIST[random_number].capitalize + " " + WORD_LIST[random_number].capitalize
+		WORD_LIST.sample.capitalize + " " + WORD_LIST.sample.capitalize
 	end
 
 	def generate_title
 		s = ""
 		(random_number % 5 + 1).times do
-			s << WORD_LIST[random_number] << " "
+			s << WORD_LIST.sample << " "
 		end
 		s.capitalize!.rstrip!
 	end
@@ -44,7 +43,7 @@ class MockArticle < Article
 	def generate_sentence
 		s = ""
 		(random_number % 6 + 5).times do
-			s << WORD_LIST[random_number] << " "
+			s << WORD_LIST.sample << " "
 		end
 		s.capitalize!.rstrip! << "."
 	end
