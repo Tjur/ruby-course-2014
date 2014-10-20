@@ -10,23 +10,23 @@ class ArticleManager
 	end
 
 	def best_articles
-	  @articles.sort{ |a| (-a.positive_votes) }
+	  worst_articles.reverse
 	end
 
 	def worst_article
-	  worst_articles[0]
+	  worst_articles.first
 	end
 
 	def best_article
-	  best_articles[0]
+	  best_articles.first
 	end
 
 	def most_popular_article
-	  @articles.collect{ |a| a.votes }.max
+	  @articles.sort{ |a| a.votes }.last
 	end
 
 	def include?(pattern)
-	  @articles.delete_if{ |a| a.include?(pattern) == false }
+	  @articles.keep_if{ |a| a.include?(pattern) }
 	end
 
 	def authors
@@ -34,7 +34,7 @@ class ArticleManager
 	end
 
 	def number_of_authors
-	  @articles.authors.size
+	  authors.size
 	end
 
 	def votes
