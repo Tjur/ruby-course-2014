@@ -1,10 +1,10 @@
 class Article
+	attr_reader :title, :author
+
 	def initialize(title, content, author = "")
-	  @title = title
-	  @content = content
-	  @author = author
+	  @title, @content, @author = title, content, author
 	  @likes = @dislikes = 0
-	  @created_at = Time.now	
+	  @created_at = Time.now
 	end
 
 	def like!
@@ -16,7 +16,7 @@ class Article
 	end
 
 	def positive_votes
-	  like! - dislike!
+	  @likes - @dislikes
 	end
 
 	def votes
@@ -38,13 +38,5 @@ class Article
 
 	def distinct_words
 		words.uniq!
-	end
-
-	def title
-	  @title
-	end
-
-	def author
-	  @author
 	end
 end
