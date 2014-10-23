@@ -8,11 +8,11 @@ class Article
 	end
 
 	def like!
-	  @like += 1
+	  @likes += 1
 	end
 
 	def dislike!
-	  @dislike += 1
+	  @dislikes += 1
 	end
 
 	def positive_votes
