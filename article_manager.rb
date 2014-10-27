@@ -6,7 +6,7 @@ class ArticleManager
   end
 
   def worst_articles
-    @articles.sort{ |a| a.positive_votes }
+    @articles.sort_by{ |a| a.positive_votes }
   end
 
   def best_articles
@@ -22,7 +22,7 @@ class ArticleManager
   end
 
   def most_popular_article
-    @articles.sort{ |a| a.votes }.last
+    @articles.sort_by{ |a| a.votes }.last
   end
 
   def include?(pattern)
