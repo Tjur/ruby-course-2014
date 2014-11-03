@@ -1,4 +1,4 @@
-require "./article.rb"
+require_relative "../../article.rb"
 
 class TestArticle < Test::Unit::TestCase
 
@@ -38,5 +38,9 @@ class TestArticle < Test::Unit::TestCase
 
   def test_distinct_words
     assert_equal(@art.distinct_words, %w[Be or not to be this is the question Tom has cat])
+  end
+
+  def test_created_stamp
+    assert_equal(@art.created_stamp, @art.created_at.stamp("Sunday, May 1, 2000"))
   end
 end
