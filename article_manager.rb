@@ -1,4 +1,5 @@
 require './article.rb'
+require './article_filesystem'
 
 class ArticleManager
   def initialize(*articles)
@@ -43,5 +44,11 @@ class ArticleManager
 
   def to_s
     @articles.each{ |a| puts "Title: \"#{a.title}\"" }
+  end
+
+  def load_articles(path)
+    loaded_articles = Dir[path + "/*"].delete_if{ |file_name| File.directory(file_name) }
+    loaded_articles.collect!{ |file_name| Article_Filesystem.get_article(file_name) }
+    @articles.concat(loaded_articles)
   end
 end
