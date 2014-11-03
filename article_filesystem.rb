@@ -1,3 +1,5 @@
+require './article.rb'
+
 class ArticleFilesystem
   ARTICLES_FOLDER = "./articles"
 
@@ -13,4 +15,5 @@ class ArticleFilesystem
     tab[3].times { art.like! }
     tab[4].times { art.dislike! }
     art
+  end
 end
