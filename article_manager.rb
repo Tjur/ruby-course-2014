@@ -1,7 +1,9 @@
 require './article.rb'
-require './article_filesystem'
+require './article_filesystem.rb'
 
 class ArticleManager
+  attr_accessor :articles
+
   def initialize(*articles)
     @articles = articles
   end
@@ -50,5 +52,9 @@ class ArticleManager
     loaded_articles = Dir[path + "/*"].delete_if{ |file_name| File.directory(file_name) }
     loaded_articles.collect!{ |file_name| Article_Filesystem.get_article(file_name) }
     @articles.concat(loaded_articles)
+  end
+
+  def save_articles
+    @articles.each{ |art| ArticleFilesystem.create_file(art) }
   end
 end
