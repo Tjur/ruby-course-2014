@@ -4,6 +4,7 @@ class ArticleFilesystem
   ARTICLES_FOLDER = "./articles"
 
   def self.create_file(art)
+    Dir.mkdir(ARTICLES_FOLDER) unless Dir.exist?(ARTICLES_FOLDER)
     file = File.new(ARTICLES_FOLDER + "/" + art.title.gsub(/\W+/, "_"), "w")
     file.write("#{art.author}|#{art.title}|#{art.content}|#{art.likes}|#{art.dislikes}")
     file.close
